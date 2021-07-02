@@ -1,0 +1,49 @@
+.main {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 70%;
+  background-color: var(--main);
+  border-radius: 10px;
+  box-shadow: 2px 0px 15px 0px rgb(77, 77, 77);
+  color: rgb(77, 77, 77);
+}
+
+.general {
+  margin: 10px 0px;
+  width: 90%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column; 
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.input label {
+  text-align: left;
+  width: 13%;
+}
+
+.input input, .input textarea {
+  width: 87%;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--bk);
+}
+
+.input textarea {
+  min-height: 60px;
+  resize: vertical;
+}
