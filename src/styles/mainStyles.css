@@ -1,5 +1,5 @@
 .main {
-  margin-top: 10px;
+  margin: 40px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@
   width: 70%;
   background-color: var(--main);
   border-radius: 10px;
-  box-shadow: 2px 0px 15px 0px rgb(77, 77, 77);
+  box-shadow: 2px 0px 5px 0px rgb(77, 77, 77);
   color: rgb(77, 77, 77);
 }
 
@@ -41,6 +41,7 @@
   border: none;
   border-radius: 3px;
   background-color: var(--bk);
+  color: rgb(77, 77, 77);
 }
 
 .input textarea {

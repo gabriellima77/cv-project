@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import Description from './general/Description';
+import Email from './general/Email';
+import FirstName from './general/FirstName';
+import LastName from './general/LastName';
+import Phone from './general/Phone';
 
 export default class GeneralInfo extends Component {
   constructor(props){
@@ -13,31 +18,47 @@ export default class GeneralInfo extends Component {
     }
   }
 
+  changeFirstName = (e)=> {
+    this.setState({
+      firstName: e.target.value,
+    });
+  }
+
+  changeLastName = (e)=> {
+    this.setState({
+      lastName: e.target.value,
+    });
+  }
+
+  changeEmail = (e)=> {
+    this.setState({
+      email: e.target.value,
+    });
+  }
+
+  changePhone = (e)=> {
+    this.setState({
+      phone: e.target.value,
+    })
+  }
+
+  changeDescription = (e)=> {
+    this.setState({
+      description: e.target.value,
+    })
+  }
+
   render() {
+    const { firstName, lastName, email, phone, description } = this.state;
     return(
       <section className="general">
         <h2>General Infomartion</h2>
         <form className="form">
-          <div className="input">
-            <label htmlFor="firstName">First Name: </label>
-            <input id="firstName" type="text" placeholder="First Name" />
-          </div>
-          <div className="input">
-            <label htmlFor="lastName">Last Name: </label>
-            <input id="lastName" type="text" placeholder="Last Name" />
-          </div>
-          <div className="input">
-            <label htmlFor="email">Email: </label>
-            <input id="email" type="email" placeholder="Email" />
-          </div>
-          <div className="input">
-            <label htmlFor="phone">Phone: </label>
-            <input id="phone" type="tel" placeholder="Phone Number" />
-          </div>
-          <div className="input">
-            <label htmlFor="description">Description: </label>
-            <textarea id="description" placeholder="Description"></textarea>
-          </div>
+          <FirstName firstName={firstName} changeFirstName={this.changeFirstName} />
+          <LastName lastName={lastName} changeLastName={this.changeLastName} />
+          <Email  email={email} changeEmail={this.changeEmail}/>
+          <Phone phone={phone} changePhone={this.changePhone}/>
+          <Description description={description} changeDescription={this.changeDescription}/>
         </form>
       </section>
     );
