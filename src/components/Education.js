@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Experience extends Component {
+export default class Education extends Component {
   constructor(props){
     super(props);
 
@@ -32,7 +32,7 @@ export default class Experience extends Component {
       <section className="xp">
         <h2>Experience</h2>
         {(this.state.isAdding)? this.getInputs(): null}
-        <button onClick={this.btnEventHandler} className="xp-btn" >Add</button>
+        <button onClick={this.btnEventHandler} className="education-btn" >Add</button>
       </section>
     );
   }

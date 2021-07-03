@@ -5,26 +5,30 @@ export default class Header extends Component{
   constructor(props){
     super(props);
     this.state = {
-      isDark: false,
+      isDark: true,
       className: 'fas fa-moon'
     }
   }
 
   changeTheme = ()=> {
-    let head = 'rgb(51, 51, 51)';
-    let bk = 'rgb(233, 233, 233)';
+    let head = 'rgb(91, 91, 91)';
+    let bk = 'rgb(51, 51, 51)';
+    let font = 'black';
+
     if(!this.state.isDark) {
-      head = 'red';
-      bk = 'black';
+      head = 'rgb(196, 180, 129)';
+      bk = 'rgb(233, 233, 233)';
+      font = 'white';
     }
     
     this.setState((prevState)=> ({
       isDark: !prevState.isDark,
-      className: `fas fa-${(prevState.isDark)?'moon':'sun'}`,
+      className: `fas fa-${(!prevState.isDark)?'moon':'sun'}`,
     }));
 
     document.documentElement.style.setProperty('--head-foot', head);
     document.documentElement.style.setProperty('--bk', bk);
+    document.documentElement.style.setProperty('--font', font);
   }
 
   render(){
