@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormXp from './mainContent/FormXp';
+import FormXp from './mainComponents/FormXp';
 
 export default class Experience extends Component {
 

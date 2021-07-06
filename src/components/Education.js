@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormEducation from './mainContent/FormEducation';
+import FormEducation from './mainComponents/FormEducation';
 
 export default class Education extends Component {
 
