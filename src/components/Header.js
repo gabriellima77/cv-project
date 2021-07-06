@@ -4,31 +4,31 @@ import '../styles/headerStyles.css';
 export default class Header extends Component{
   constructor(props){
     super(props);
+
     this.state = {
-      isDark: true,
       className: 'fas fa-moon'
     }
   }
 
   changeTheme = ()=> {
-    let head = 'rgb(91, 91, 91)';
-    let bk = 'rgb(51, 51, 51)';
-    let font = 'black';
+    const {isDark, themeHandler} = this.props;
+    let head = '#212121';
+    let bk = '#323232';
+    let font = 'white';
 
-    if(!this.state.isDark) {
-      head = 'rgb(196, 180, 129)';
-      bk = 'rgb(233, 233, 233)';
-      font = 'white';
+    if(!isDark) {
+      head = '#A0937D';
+      bk = '#F2DAC3';
+      font = 'black';
     }
-    
-    this.setState((prevState)=> ({
-      isDark: !prevState.isDark,
-      className: `fas fa-${(!prevState.isDark)?'moon':'sun'}`,
-    }));
+    this.setState({
+      className: `fas fa-${(!isDark)?'moon':'sun'}`,
+    });
 
     document.documentElement.style.setProperty('--head-foot', head);
     document.documentElement.style.setProperty('--bk', bk);
     document.documentElement.style.setProperty('--font', font);
+    themeHandler();
   }
 
   render(){

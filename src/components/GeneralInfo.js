@@ -39,13 +39,13 @@ export default class GeneralInfo extends Component {
   changePhone = (e)=> {
     this.setState({
       phone: e.target.value,
-    })
+    });
   }
 
   changeDescription = (e)=> {
     this.setState({
       description: e.target.value,
-    })
+    });
   }
 
   render() {
@@ -56,7 +56,7 @@ export default class GeneralInfo extends Component {
         <form className="form">
           <FirstName firstName={firstName} changeFirstName={this.changeFirstName} />
           <LastName lastName={lastName} changeLastName={this.changeLastName} />
-          <Email  email={email} changeEmail={this.changeEmail}/>
+          <Email email={email} changeEmail={this.changeEmail}/>
           <Phone phone={phone} changePhone={this.changePhone}/>
           <Description description={description} changeDescription={this.changeDescription}/>
         </form>

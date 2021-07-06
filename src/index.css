@@ -1,7 +1,7 @@
 :root {
-  --head-foot: rgb(196, 180, 129);
-  --bk: rgb(233, 233, 233);
-  --font: white;
+  --head-foot: #A0937D;
+  --bk: #F2DAC3;
+  --font: black;
 }
 
 body {

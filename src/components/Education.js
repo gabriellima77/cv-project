@@ -30,7 +30,7 @@ export default class Education extends Component {
   render() {
     return(
       <section className="xp">
-        <h2>Experience</h2>
+        <h2>Education</h2>
         {(this.state.isAdding)? this.getInputs(): null}
         <button onClick={this.btnEventHandler} className="education-btn" >Add</button>
       </section>

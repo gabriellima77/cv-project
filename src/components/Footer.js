@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/footerStyles.css';
-import img from '../GitHub-Mark-Light-64px.png';
+import githubLight from '../GitHub-Mark-Light-64px.png';
+import githubDark from '../GitHub-Mark-64px.png';
 
-const Footer = ()=> {
+const Footer = ({ isDark })=> {
   return(
     <footer className="footer">
       <p>Made by Gabriel Lima</p>
@@ -13,7 +14,7 @@ const Footer = ()=> {
       >
         <img
           alt="github logo"
-          src={img}
+          src={(isDark)? githubDark: githubLight}
           className="logo-github"
         />
       </a>
