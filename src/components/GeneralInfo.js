@@ -6,59 +6,22 @@ import LastName from './general/LastName';
 import Phone from './general/Phone';
 
 export default class GeneralInfo extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      description: '',
-    }
-  }
-
-  changeFirstName = (e)=> {
-    this.setState({
-      firstName: e.target.value,
-    });
-  }
-
-  changeLastName = (e)=> {
-    this.setState({
-      lastName: e.target.value,
-    });
-  }
-
-  changeEmail = (e)=> {
-    this.setState({
-      email: e.target.value,
-    });
-  }
-
-  changePhone = (e)=> {
-    this.setState({
-      phone: e.target.value,
-    });
-  }
-
-  changeDescription = (e)=> {
-    this.setState({
-      description: e.target.value,
-    });
-  }
-
   render() {
-    const { firstName, lastName, email, phone, description } = this.state;
+    const { data, events } = this.props;
+    const { firstName, lastName, email, phone, description } = data;
+    const {
+      changeFirstName, changeLastName, changeEmail,
+      changePhone, changeDescription
+    } = events;
     return(
       <section className="general">
         <h2>General Infomartion</h2>
         <form className="form">
-          <FirstName firstName={firstName} changeFirstName={this.changeFirstName} />
-          <LastName lastName={lastName} changeLastName={this.changeLastName} />
-          <Email email={email} changeEmail={this.changeEmail}/>
-          <Phone phone={phone} changePhone={this.changePhone}/>
-          <Description description={description} changeDescription={this.changeDescription}/>
+          <FirstName firstName={firstName} changeFirstName={changeFirstName} />
+          <LastName lastName={lastName} changeLastName={changeLastName} />
+          <Email email={email} changeEmail={changeEmail}/>
+          <Phone phone={phone} changePhone={changePhone}/>
+          <Description description={description} changeDescription={changeDescription}/>
         </form>
       </section>
     );

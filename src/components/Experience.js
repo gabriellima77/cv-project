@@ -1,43 +1,36 @@
 import React, { Component } from 'react';
+import Input from './mainContent/Input';
 
 export default class Experience extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      roles: [],
-    }
-  }
 
   btnEventHandler = ()=> {
     const { addXp } = this.props;
     addXp();
   }
 
-  changeInput = (e, type, exp)=> {
+  changeValue = (value, type, exp)=> {
     let newXp = {
       ...exp
     };
     switch(type){
       case 'role':
-        newXp.role = e.target.value;
+        newXp.role = value;
         break;
       case 'company':
-        newXp.company = e.target.value;
+        newXp.company = value;
         break;
       case 'city':
-        newXp.city = e.target.value;
+        newXp.city = value;
         break;
       case 'from':
-        newXp.from = e.target.value;
+        newXp.from = value;
         break;
       case 'to':
-        newXp.to = e.target.value;
+        newXp.to = value;
         break;
       default:
         break;
     }
-    console.log(newXp);
     this.props.changeXp(newXp);
   }
 
@@ -46,48 +39,55 @@ export default class Experience extends Component {
     return(
       <div key={key} className="content">
         <form className="xp-box">
-          <div className="input">
-            <label>Role</label>
-            <input
-              onChange={(e)=> {this.changeInput(e, 'role', xp)}}
-              type="text"
-              placeholder="Role"
-            />
-          </div>
-          <div className="input">
-            <label>Company</label>
-            <input
-              onChange={(e)=> {this.changeInput(e, 'company', xp)}}
-              type="text"
-              placeholder="Company"
-            />
-          </div>
-          <div className="input">
-            <label>City</label>
-            <input
-              onChange={(e)=> {this.changeInput(e, 'city', xp)}}
-              type="text"
-              placeholder="City"
-            />
-          </div>
-          <div className="input">
-            <label>From</label>
-            <input
-              onChange={(e)=> {this.changeInput(e, 'from', xp)}}
-              type="date"
-              placeholder="MM/DD/YYYY"
-            />
-          </div>
-          <div className="input">
-            <label>To</label>
-            <input
-              onChange={(e)=> {this.changeInput(e, 'to', xp)}}
-              type="date"
-              placeholder="MM/DD/YYYY"
-            />
-          </div>
+          <Input
+            title="Role"
+            type="text"
+            prop="role"
+            changeValue={this.changeValue}
+            obj={xp}
+          />
+          <Input
+            title="Company"
+            type="text"
+            prop="company"
+            changeValue={this.changeValue}
+            obj={xp}
+          />
+          <Input
+            title="City"
+            type="text"
+            prop="city"
+            changeValue={this.changeValue}
+            obj={xp}
+          />
+          <Input
+            title="From"
+            type="date"
+            prop="from"
+            changeValue={this.changeValue}
+            obj={xp}
+          />
+          <Input
+            title="From"
+            type="date"
+            prop="from"
+            changeValue={this.changeValue}
+            obj={xp}
+          />
+          <Input
+            title="To"
+            type="date"
+            prop="to"
+            changeValue={this.changeValue}
+            obj={xp}
+          />
         </form>
-        <button onClick={()=> {removeXp(key)}} className="xp-btn m-vertical">Delete</button>
+        <button
+          onClick={()=> {removeXp(key)}}
+          className="large-btn m-vertical"
+        >
+          Delete
+        </button>
       </div>
     );
   }
@@ -98,7 +98,7 @@ export default class Experience extends Component {
       <section className="xp">
         <h2>Experience</h2>
         {xp.map((exp)=> (this.getInputs(exp, exp.id)))}
-        <button onClick={this.btnEventHandler} className="xp-btn">
+        <button onClick={this.btnEventHandler} className="large-btn">
           Add
         </button>
       </section>
