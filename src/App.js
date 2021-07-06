@@ -120,17 +120,11 @@ export default class App extends Component {
   }
 
   changeEducation = (content)=> {
-    const { school, study, from, to, id } = content;
     const newEducation = {
-      school,
-      study,
-      from,
-      to,
-      id
+      ...content
     }
-
     this.setState((prev)=> ({
-      education: prev.education.map((educ)=> (educ.id === id)?newEducation: educ)
+      education: prev.education.map((educ)=> (educ.id === newEducation.id)? newEducation: educ)
     }));
   }
 

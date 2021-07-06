@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 
 export default class Input extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: '',
-    }
-  }
 
   changeInput = (e)=> {
-    const { changeValue, obj, prop } = this.props;
-    this.setState({
-      value: e.target.value
-    });
-    changeValue(e.target.value, prop, obj);
+    const { changeValue, prop } = this.props;
+    changeValue(e.target.value, prop);
   }
 
   render() {
-    const { title, type } = this.props;
+    const { title, type, value } = this.props;
     return (
       <div className="input">
         <label>{title}</label>
@@ -26,7 +16,7 @@ export default class Input extends Component {
           onChange={this.changeInput}
           type={type}
           placeholder={title}
-          value={this.state.value}
+          value={value}
         />
       </div>
     )
