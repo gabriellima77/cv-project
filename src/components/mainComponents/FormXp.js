@@ -64,14 +64,14 @@ export default class FormXp extends Component {
           />
           <Input
             title="From"
-            type="date"
+            type="text"
             prop="from"
             changeValue={this.changeState}
             value={this.state.from}
           />
           <Input
             title="To"
-            type="date"
+            type="text"
             prop="to"
             changeValue={this.changeState}
             value={this.state.to}

@@ -160,7 +160,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header isDark={isDark} themeHandler={this.themeHandler} />
-        <Buttons changePreview={this.changePreview}/>
+        <Buttons isPreview={this.state.isPreview} changePreview={this.changePreview}/>
         {
           (this.state.isPreview)
             ? <Preview

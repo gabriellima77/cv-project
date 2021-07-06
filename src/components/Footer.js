@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/footerStyles.css';
-import githubLight from '../GitHub-Mark-Light-64px.png';
-import githubDark from '../GitHub-Mark-64px.png';
+import githubLight from '../assets/GitHub-Mark-Light-64px.png';
+import githubDark from '../assets/GitHub-Mark-64px.png';
 
 const Footer = ({ isDark })=> {
   return(

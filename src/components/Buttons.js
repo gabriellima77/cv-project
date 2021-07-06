@@ -2,12 +2,22 @@ import React, { Component } from 'react';
 
 export default class Buttons extends Component{
   render() {
-    const { changePreview } = this.props;
+    const { changePreview, isPreview } = this.props;
     return(
       <div className="btn-box">
-        <button onClick={()=> {changePreview(false)}} className="edit-btn">Edit</button>
+        <button
+          onClick={()=> {changePreview(false)}}
+          className={`edit-btn ${(!isPreview)? 'active': ''}`}
+        >
+          Edit
+        </button>
         <span className="middle">or</span>
-        <button onClick={()=> {changePreview(true)}} className="preview-btn">Preview</button>
+        <button
+          onClick={()=> {changePreview(true)}}
+          className={`preview-btn ${(isPreview)?'active': ''}`}
+        >
+          Preview
+        </button>
       </div>
     );
   }
