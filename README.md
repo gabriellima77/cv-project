@@ -9,7 +9,7 @@ This project is part of the The Odin Project Curriculum.<br />
 ## Getting Started
 
 ```
-  git clone https://github.com/michalosman/cv-application.git
+  git clone git@github.com:gabriellima77/cv-project.git
   cd cv-application
   npm install
   npm start
