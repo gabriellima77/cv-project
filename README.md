@@ -6,7 +6,7 @@ This project is part of the The Odin Project Curriculum.<br />
 
 [Live Demo]()
 
-#Getting Started
+##Getting Started
 
 ´´´
   git clone https://github.com/michalosman/cv-application.git
