@@ -5,6 +5,7 @@ It's an application build with React that create a CV based on the information t
 This project is part of the The Odin Project Curriculum.<br />
 
 [Live Demo]()
+
 #Getting Started
 
 ´´´
