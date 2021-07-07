@@ -17,12 +17,12 @@ export default class Preview extends Component {
           </div>
           <div className="educ">
             <h3>Education</h3>
-            {education.map((educ)=> (<ContentBox key={educ.id}data={educ} />))}
           </div>
+          {education.map((educ)=> (<ContentBox key={educ.id}data={educ} />))}
           <div className="exp">
             <h3>Experience</h3>
-            {xp.map((exp)=> (<ContentBox key={exp.id} data={exp} />))}
           </div>
+          {xp.map((exp)=> (<ContentBox key={exp.id} data={exp} />))}
         </div>
       </div>
     );
