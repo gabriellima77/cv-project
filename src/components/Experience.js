@@ -1,38 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormXp from './mainComponents/FormXp';
 
-export default class Experience extends Component {
-
-  btnEventHandler = ()=> {
-    const { addXp } = this.props;
-    addXp();
-  }
-
-  changeValue = (exp)=> {
-    let newXp = {
-      ...exp
-    };
-    this.props.changeXp(newXp);
-  }
-
-  render() {
-    const { xp, removeXp } = this.props;
-    return(
-      <section className="xp">
-        <h2>Experience</h2>
-        {xp.map((exp)=> (
-          <FormXp
-          key={exp.id}
-          keyValue={exp.id}
-          changeValue={this.changeValue}
-          removeXp={removeXp}
-          xp={exp}
-        />))
-      }
-        <button onClick={this.btnEventHandler} className="large-btn">
-          Add
-        </button>
-      </section>
-    );
-  }
+const Experience = ({xp, addXp, changeXp, removeXp})=> {
+  
+  return (
+    <section className="xp">
+      <h2>Experience</h2>
+      {xp.map((exp)=> (
+        <FormXp
+        key={exp.id}
+        keyValue={exp.id}
+        changeValue={changeXp}
+        removeXp={removeXp}
+        xp={exp}
+      />))
+    }
+      <button onClick={addXp} className="large-btn">
+        Add
+      </button>
+    </section>
+  );
 }
+
+export default Experience;

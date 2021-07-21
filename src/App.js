@@ -1,73 +1,123 @@
 import './App.css';
+import { useState } from 'react';
 import Header from './components/Header';
 import Buttons from './components/Buttons';
 import Preview from './components/Preview';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import { Component } from 'react';
-
 import uniqid from 'uniqid';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+const App = ()=> {
+  const {isDark, themeHandler} = useTheme();
+  const {isPreview, changePreview} = usePreview();
 
-    this.state = {
-      isDark: true,
-      isPreview: false,
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      description: '',
-      xp: [],
-      education: []
-    }
+  const {
+    firstName, lastName, email, phone, description,
+    changeFirstName, changeLastName, changeEmail,
+    changePhone, changeDescription
+  } = useGeneral();
+
+  const {
+    xp, changeXp,
+    addXp, removeXp
+  } = useXp();
+
+  const {
+    education, changeEducation,
+    addEducation, removeEducation,
+  } = useEducation();
+
+
+  return (
+    <div className="App">
+      <Header
+        isDark={isDark}
+        themeHandler={themeHandler}
+      />
+      <Buttons 
+        isPreview={isPreview}
+        changePreview={changePreview}
+      />
+      {
+        (isPreview)
+          ? <Preview
+              general={{firstName, lastName, email, phone, description}}
+              xp={xp}
+              education={education}
+            />
+          : <Main
+              data={{firstName, lastName, email, phone, description}}
+              events={{
+                changeFirstName, changeLastName, changeEmail,
+                changePhone, changeDescription,
+              }}
+              education={education}
+              educationEvents={{
+                addEducation, changeEducation, removeEducation
+              }}
+              xp={xp}
+              xpEvents={{
+                addXp, changeXp, removeXp
+              }}
+            />
+      }
+      <Footer isDark={isDark}/>
+    </div>
+  );
+}
+
+const useTheme = ()=> {
+  const [isDark, setIsDark] = useState(true);
+
+  const themeHandler = ()=> {
+    setIsDark(!isDark);
   }
 
-  themeHandler = ()=> {
-    this.setState((prevState)=> ({
-      isDark: !prevState.isDark,
-    }));
+  return {
+    isDark,
+    themeHandler,
+  }
+}
+
+const usePreview = ()=> {
+  const [isPreview, setIsPreview] = useState(false);
+
+  const changePreview = (bool)=> {
+    setIsPreview(bool);
   }
 
-  changePreview = (bool)=> {
-    this.setState({
-      isPreview: bool
-    })
+  return {
+    isPreview,
+    changePreview,
   }
+}
 
-  changeFirstName = (e)=> {
-    this.setState({
-      firstName: e.target.value,
-    });
+const useGeneral = ()=> {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [description, setDescription] = useState('');
+
+  const changeFirstName = (e)=> setFirstName(e.target.value);
+  const changeLastName = (e)=> setLastName(e.target.value);
+  const changeEmail = (e)=> setEmail(e.target.value);
+  const changePhone = (e)=> setPhone(e.target.value);
+  const changeDescription = (e)=> setDescription(e.target.value);
+
+  return {
+    firstName, changeFirstName,
+    lastName, changeLastName,
+    email, changeEmail,
+    phone, changePhone,
+    description, changeDescription,
   }
+}
 
-  changeLastName = (e)=> {
-    this.setState({
-      lastName: e.target.value,
-    });
-  }
+const useXp = ()=> {
+  const [xp, setXp] = useState([]);
 
-  changeEmail = (e)=> {
-    this.setState({
-      email: e.target.value,
-    });
-  }
-
-  changePhone = (e)=> {
-    this.setState({
-      phone: e.target.value,
-    });
-  }
-
-  changeDescription = (e)=> {
-    this.setState({
-      description: e.target.value,
-    });
-  }
-
-  addXp = ()=> {
+  const addXp = ()=> {
     const newXp = {
       role: '',
       company: '',
@@ -77,34 +127,35 @@ export default class App extends Component {
       id: uniqid(),
     };
 
-    this.setState((prev)=> ({
-      xp: [...prev.xp, newXp]
-    }));
+    setXp ([...xp, newXp]);
   }
 
-  changeXp = (content)=> {
-    const { role, company, city, from, to, id } = content;
-    const newXp = {
-      role,
-      company,
-      city,
-      from,
-      to,
-      id
-    }
+  const changeXp = (content)=> {
+    const newXp = {...content};
 
-    this.setState((prev)=> ({
-      xp: prev.xp.map((exp)=> (exp.id === id)? newXp: exp)
-    }))
+    setXp(
+      xp.map((exp)=> (exp.id === newXp.id)? newXp: exp)
+    );
   }
 
-  removeXp = (id)=> {
-    this.setState((prev)=> ({
-      xp: prev.xp.filter((xp)=> (xp.id !== id))
-    }));
+  const removeXp = (id)=> {
+    setXp(
+      xp.filter((xp)=> (xp.id !== id))
+    );
   }
 
-  addEducation = ()=> {
+  return {
+    xp,
+    addXp,
+    changeXp,
+    removeXp,
+  }
+}
+
+const useEducation = ()=> {
+  const [education, setEducation] = useState([]);
+
+  const addEducation = ()=> {
     const newEducation = {
       school: '',
       study: '',
@@ -113,73 +164,31 @@ export default class App extends Component {
       id: uniqid(),
     };
 
-    this.setState((prev)=> ({
-      education: [...prev.education, newEducation]
-    }));
+    setEducation([...education, newEducation]);
   }
 
-  changeEducation = (content)=> {
+  const changeEducation = (content)=> {
     const newEducation = {
       ...content
-    }
-    this.setState((prev)=> ({
-      education: prev.education.map((educ)=> (educ.id === newEducation.id)? newEducation: educ)
-    }));
-  }
+    };
 
-  removeEducation = (id)=> {
-    this.setState((prev)=> ({
-      education: prev.education.filter((educ)=> (educ.id !== id))
-    }));
-  }
-
-  render() {
-    const { isDark } = this.state;
-    const { firstName, lastName, email, phone, description } = this.state;
-    const general = { firstName, lastName, email, phone, description };
-    const events = {
-      changeFirstName: this.changeFirstName,
-      changeLastName: this.changeLastName,
-      changeEmail: this.changeEmail,
-      changePhone: this.changePhone,
-      changeDescription: this.changeDescription
-    }
-
-    const educationEvents = {
-      changeEducation: this.changeEducation,
-      addEducation: this.addEducation,
-      removeEducation: this.removeEducation
-    }
-
-    const xpEvents = {
-      changeXp: this.changeXp,
-      addXp: this.addXp,
-      removeXp: this.removeXp
-    }
-
-    return (
-      <div className="App">
-        <Header isDark={isDark} themeHandler={this.themeHandler} />
-        <Buttons isPreview={this.state.isPreview} changePreview={this.changePreview}/>
-        {
-          (this.state.isPreview)
-            ? <Preview
-                general={general}
-                xp={this.state.xp}
-                education={this.state.education}
-              />
-            : <Main
-                data={this.state}
-                events={events}
-                education={this.state.education}
-                educationEvents={educationEvents}
-                xp={this.state.xp}
-                xpEvents={xpEvents}
-              />
-        }
-        <Footer isDark={isDark}/>
-      </div>
+    setEducation(
+      education.map((educ)=> (educ.id === newEducation.id)? newEducation: educ)
     );
+  }
+
+  const removeEducation = (id)=> {
+    setEducation(
+      education.filter((educ)=> (educ.id !== id))
+    );
+  }
+
+  return {
+    education,
+    addEducation,
+    changeEducation,
+    removeEducation,
   }
 }
 
+export default App;

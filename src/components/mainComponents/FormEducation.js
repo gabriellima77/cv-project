@@ -1,82 +1,67 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from './Input';
 
-export default class FormEducation extends Component {
-  constructor(props) {
-    super(props);
+const FormEducation = (props)=> {
+  const [state, setState] = useState({});
+  const {
+    educ, changeValue,
+    keyValue, removeEducation
+  } = props;
 
-    this.state = {
-      school: '',
-      study: '',
-      from: '',
-      to: '',
-      id: '',
-    }
-  }
+  useEffect(()=> {
+    setState({...educ});
+  }, [educ]);
 
-  changeState = (value, stateName)=> {
-    const { changeValue } = this.props;
-    const newObj = {
-      ...this.state
-    }
 
-    this.setState({
-      [stateName]: value
-    });
+  const changeState = (value, stateName)=> {
+    const newObj = {...state};
 
     newObj[stateName] = value;
+
+    setState(newObj);
     changeValue(newObj);
   }
 
-  componentDidMount() {
-    const education = {
-      ...this.props.educ
-    }
-    console.log(education);
-    if(!this.state.id) this.setState({...education});
-  }
-
-  render() {
-    const { keyValue, removeEducation } = this.props;
-    return (
-      <div key={keyValue} className="content">
-        <form className="xp-box">
-          <Input
-            title="School Name"
-            type="text"
-            prop="school"
-            changeValue={this.changeState}
-            value={this.state.school}
-          />
-          <Input
-            title="Title of Study"
-            type="text"
-            prop="study"
-            changeValue={this.changeState}
-            value={this.state.study}
-          />
-          <Input
-            title="From"
-            type="text"
-            prop="from"
-            changeValue={this.changeState}
-            value={this.state.from}
-          />
-          <Input
-            title="To"
-            type="text"
-            prop="to"
-            changeValue={this.changeState}
-            value={this.state.to}
-          />
-        </form>
-        <button
-          onClick={()=> {removeEducation(keyValue)}}
-          className="large-btn m-vertical"
-        >
-          Delete
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div key={keyValue} className="content">
+      <form className="xp-box">
+        <Input
+          title="School Name"
+          type="text"
+          prop="school"
+          changeValue={changeState}
+          value={state.school}
+        />
+        <Input
+          title="Title of Study"
+          type="text"
+          prop="study"
+          changeValue={changeState}
+          value={state.study}
+        />
+        <Input
+          title="From"
+          type="text"
+          prop="from"
+          changeValue={changeState}
+          value={state.from}
+        />
+        <Input
+          title="To"
+          type="text"
+          prop="to"
+          changeValue={changeState}
+          value={state.to}
+        />
+      </form>
+      <button
+        onClick={()=> {removeEducation(keyValue)}}
+        className="large-btn m-vertical"
+      >
+        Delete
+      </button>
+    </div>
+  );
 }
+
+export default FormEducation;
