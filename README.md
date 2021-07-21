@@ -4,12 +4,13 @@ It's an application build with React that create a CV based on the information t
 
 This project is part of the The Odin Project Curriculum.<br />
 
-[Live Demo]()
-#Getting Started
+[Live Demo](https://gabriellima77.github.io/cv-project/)
 
-´´´
-  git clone https://github.com/michalosman/cv-application.git
+## Getting Started
+
+```
+  git clone git@github.com:gabriellima77/cv-project.git
   cd cv-application
   npm install
   npm start
-´´´
+```
