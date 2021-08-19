@@ -6,7 +6,9 @@ Page to create a CV, built with React.
 It's an application build with React that create a CV with the information that you set. This project was part of my React studies, this app is all about hooks, states and components life-cycle, basically all the React's basics. 
 
 ## Demo
+### Cv-Application
 ![Cv-Application Demo](./demo/demo.gif) <br />
+### Cv Example
 ![Cv Example](./demo/example.png) <br />
 
 If you want to give it a try click the link below: <br />
